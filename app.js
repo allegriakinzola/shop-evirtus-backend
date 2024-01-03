@@ -2,10 +2,11 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+require("dotenv").config()
+const PORT = process.env.PORT || 8000;
 const connectDB = require("./src/services/connectdb");
 const routeuserscardsstoled = require("./routes/routeuserscardsstoled");
 const routeuserscardsfound = require("./routes/routeuserscardsfound")
-const PORT = 8000;
 const app = express();
 const cors = require("cors")
 
