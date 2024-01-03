@@ -25,6 +25,9 @@ connectDB()
 app.use(routeuserscardsstoled);
 app.use(routeuserscardsfound)
 
+app.get("/", (req, res)=>{
+  res.send("app running")
+})
 app.listen(PORT, () => {
   console.log("Lancement de l'application sur le port 8000");
 });
