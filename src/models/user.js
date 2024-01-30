@@ -2,18 +2,21 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 const { isEmail } = require("validator");
 
-let UsersCardsFound;
+let User;
 
 try {
   // Vérifier si le modèle existe déjà
-  UsersCardsFound = mongoose.model("UsersCardsFound");
+  User = mongoose.model("User");
 } catch (error) {
   // Le modèle n'existe pas, le définir et l'enregistrer
-  const usersCardsFoundSchema = new Schema({
+  const userSchema = new Schema({
     name: {
       type: String,
     },
     lastname: {
+      type: String,
+    },
+    password: {
       type: String,
     },
     email: {
@@ -23,22 +26,13 @@ try {
         message: "Adresse e-mail non valide",
       },
     },
-    tel: {
+    status : {
       type: String,
-    },
-    cardtype: {
-      type: String,
-      enum : ["electercard", "studentcard", "identitycard", "visacard","passport" ]
-    },
-    nameusercardown: {
-      type: String,
-    },
-    lastnameusercardown: {
-      type: String,
+      enum : ["admin", "client"]
     },
   });
 
-  UsersCardsFound = model("UsersCardsFound", usersCardsFoundSchema);
+  User = model("User", userSchema);
 }
 
-module.exports = UsersCardsFound;
+module.exports = User;
