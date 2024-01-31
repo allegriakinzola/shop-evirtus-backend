@@ -32,17 +32,14 @@ router.post("/postuser", async (req, res) => {
 
 
 router.post("/login", async (req, res) => {
-  const user = new Users({
-    password : req.body.password,
-    email: req.body.email,
-  });
-
+  const {email, password} = req.body
   try {
-    const userFound = await Users.findOne(user);
+    const userFound = await Users.findOne({ email, password });
     if (userFound) {
-      res.status(201).json("exist");
+      res.status(201).json(userFound);
+      console.log('user is login')
     } else {
-      res.status(201).json("notexist");
+      res.status(201).json("usernotexist");
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
