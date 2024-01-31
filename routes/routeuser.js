@@ -38,11 +38,7 @@ router.post("/login", async (req, res) => {
   });
 
   try {
-    await user.save();
-    const userFound = await Users.findOne({
-      email : req.body.email,
-      password: req.body.password,
-    });
+    const userFound = await Users.findOne(user);
     if (userFound) {
       res.status(201).json("exist");
     } else {

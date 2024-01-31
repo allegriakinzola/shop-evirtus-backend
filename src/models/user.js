@@ -21,10 +21,6 @@ try {
     },
     email: {
       type: String,
-      validate: {
-        validator: isEmail,
-        message: "Adresse e-mail non valide",
-      },
     },
     status : {
       type: String,

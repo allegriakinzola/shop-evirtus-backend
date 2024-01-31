@@ -5,8 +5,7 @@ const logger = require('morgan');
 require("dotenv").config()
 const PORT = process.env.PORT || 8000;
 const connectDB = require("./src/services/connectdb");
-const routeuserscardsstoled = require("./routes/routeuserscardsstoled");
-const routeuserscardsfound = require("./routes/routeuserscardsfound")
+const routeuser = require("./routes/routeuser");
 const app = express();
 const cors = require("cors")
 
@@ -22,8 +21,8 @@ connectDB()
   .then(() => console.log("Traitement après la connexion à la base de données"))
   .catch(error => console.log("Erreur lors de la connexion à la base de données ", error));
 
-app.use(routeuserscardsstoled);
-app.use(routeuserscardsfound)
+app.use(routeuser);
+
 
 app.get("/", (req, res)=>{
   res.send("app running")
